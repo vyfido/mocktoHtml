@@ -66,14 +66,19 @@ public class MainApp {
 				}else {
 					HtmlScenariesPage scenarie = new HtmlScenariesPage(node);		
 					File dir = new File(outputPath+"/docs/"+ExtractInfo.getDirScenarie(ExtractInfo.getScenarie(resource, requestPath)));
-					dir.mkdir();
+					if(dir.mkdir()) {
 					files.write(outputPath+"/docs/"+ExtractInfo.getScenarie(resource, requestPath).replace(".json", "")+".html", scenarie.toHtml());
+					}else {
+						System.err.println("Failed to write directory: "+outputPath+"/docs");
+					}
 				}
 				
 			} catch (JsonProcessingException e) {
-				e.printStackTrace();
+				System.err.println(e.getMessage());
+				return;
 			} catch (Exception e) {
-				e.printStackTrace();
+				System.err.println(e.getMessage());
+				return;
 			}
 			
 		}

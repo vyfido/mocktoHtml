@@ -48,7 +48,7 @@ public final class ExtractInfo {
 	 */
 	public static String getName(String text) {
 		if(text != null && text.length() > 0) {
-		return text.substring(text.lastIndexOf("/")+1, text.length());
+		return text.substring(text.lastIndexOf('/')+1, text.length());
 		}else {
 			return text;
 		}
@@ -61,7 +61,7 @@ public final class ExtractInfo {
 	 */
 	public static String getDirScenarie(String dir) {
 		if(dir != null && dir.length() > 0) {
-		return dir.substring(0,dir.lastIndexOf("/"));
+		return dir.substring(0,dir.lastIndexOf('/'));
 		}else {
 			return dir;
 		}

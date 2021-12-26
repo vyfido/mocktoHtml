@@ -32,7 +32,6 @@ public class HtmlPage implements Export{
 		
 	private JsonNode node = null;
 	
-	@SuppressWarnings("unused")
 	private String rootDir = null;
 	
 	private String resource = null;
@@ -47,6 +46,14 @@ public class HtmlPage implements Export{
 	
 	public void setName(String resource) {
 		this.resource = resource;
+	}
+	
+	public String getRootDir() {
+		return rootDir;
+	}
+	
+	public String toString() {
+		return this.rootDir != null ? this.rootDir : "";
 	}
 	
 	private String internalRequest(JsonNode request) {

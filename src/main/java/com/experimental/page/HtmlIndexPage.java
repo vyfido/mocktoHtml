@@ -48,7 +48,7 @@ public class HtmlIndexPage implements Export{
 	 * Constructor
 	 * @param content list the files
 	 */
-	public HtmlIndexPage(String[] content) {
+	public HtmlIndexPage(String... content) {
 		this.content = content;
 	}
 
@@ -66,6 +66,10 @@ public class HtmlIndexPage implements Export{
 	 */
 	public void setOutDirectory(String outDir) {
 		this.outDir = outDir;
+	}
+	
+	public String toString() {
+		return this.rootDir != null ? this.rootDir : "";
 	}
 
 	/**

@@ -18,6 +18,8 @@ import java.util.Date;
 
 import com.experimental.core.Export;
 import com.experimental.util.DateUtil;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -37,13 +39,21 @@ public class HtmlScenariesPage implements Export{
 	
 	private JsonNode mappings = null;
 	
+	public String toString() {
+		return this.node != null ? this.node.get("mappings").toString() : "";
+	}
+	
 	public HtmlScenariesPage(JsonNode node) {
 		this.node = node;
 		
 		try {
 			mappings = om.readValue(node.get("mappings").toString(), JsonNode.class);	
+		}catch(JsonParseException e) {
+			System.err.println(e.getMessage());
+		}catch(JsonMappingException e) {
+			System.err.println(e.getMessage());
 		}catch(Exception e) {
-			e.printStackTrace();
+			System.err.println(e.getMessage());
 		}
 				
 	}

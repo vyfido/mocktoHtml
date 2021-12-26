@@ -33,12 +33,13 @@ public final class FileUtil {
 	 */
 	public boolean write(String fullpath,String message){
 		try {
-			Files.write(Paths.get(fullpath), message.getBytes(StandardCharsets.UTF_8));
+			Files.write(Paths.get(fullpath), message.getBytes(StandardCharsets.UTF_8.name()));
 			return true;
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.err.println(e.getMessage());
 			return false;
 		} catch(Exception e) {
+			System.err.println(e.getMessage());
 			return false;
 		}
 	}
@@ -48,9 +49,10 @@ public final class FileUtil {
 			Files.write(Paths.get(fullpath), message);
 			return true;
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.err.println(e.getMessage());
 			return false;
 		} catch(Exception e) {
+			System.err.println(e.getMessage());
 			return false;
 		}
 	}
@@ -63,22 +65,20 @@ public final class FileUtil {
 	public String readFile(String file){
 		Scanner scanner = null;
 		try {
-			scanner = new Scanner(new File(file));
+			scanner = new Scanner(new File(file), StandardCharsets.UTF_8.name());
 			StringBuilder sb = new StringBuilder();
 			while(scanner.hasNext()){
 				sb.append(scanner.nextLine());
-				sb.append("\n");
+				sb.append('\n');
 			}
 			return sb.toString();
 		} catch (FileNotFoundException e) {
+			System.err.println(e.getMessage());
 			return "";
 		} catch(Exception e){
+			System.err.println(e.getMessage());
 			return "";
-		}finally{
-			if(scanner != null){
-				scanner.close();
-			}
-		}		
+		}	
 	}
 
 
@@ -103,8 +103,10 @@ public final class FileUtil {
 					}
 				}		    	
 			}catch(NullPointerException e) {
+				System.err.println(e.getMessage());
 				list.clear();
 			}catch(Exception e){
+				System.err.println(e.getMessage());
 				list.clear();
 			}
 		
